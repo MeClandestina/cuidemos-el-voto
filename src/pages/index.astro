@@ -259,7 +259,7 @@ function formatCO(n: number): string {
     var total = parseInt(raw, 10);
     if(!total) return;
     var el = document.getElementById('recaudado');
-    if(el){ el.setAttribute('data-count', total); el.textContent = fmtCO(total); }
+    if(el){ el.setAttribute('data-count', total); el.dataset.done = ''; el.textContent = fmtCO(total); }
     var dateEl = document.getElementById('lastUpdate');
     if(dateEl && fecha) dateEl.textContent = fecha;
   }).catch(function(){});
