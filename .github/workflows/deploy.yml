@@ -25,13 +25,11 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Install lftp
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp
+
       - name: Deploy via SFTP
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
-        with:
-          server: ${{ secrets.FTP_HOST }}
-          username: ${{ secrets.FTP_USER }}
-          password: ${{ secrets.FTP_PASS }}
-          port: 22
-          local_path: ./dist/*
-          remote_path: ${{ secrets.FTP_PATH }}
-          sftp_only: true
+        run: |
+          lftp -u "${{ secrets.FTP_USER }},${{ secrets.FTP_PASS }}" \
+               -e "set sftp:auto-confirm yes; mirror -R --verbose dist/ ${{ secrets.FTP_PATH }}; quit" \
+               sftp://${{ secrets.FTP_HOST }}
