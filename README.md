@@ -1,43 +1,13 @@
-# Astro Starter Kit: Minimal
+# Cuidemos el Voto
 
-```sh
-npm create astro@latest -- --template minimal
-```
+Iniciativa ciudadana de **Imprenta Republicana** para cubrir el transporte de votantes en zonas rurales de Colombia hacia sus puestos de votacion. Segunda vuelta presidencial, 21 de junio de 2026.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+En muchas veredas y corregimientos el puesto de votacion mas cercano queda a horas de camino. El transporte puede costar lo que una familia necesita para comer en una semana. Nadie deberia dejar de votar por falta de plata para el pasaje.
 
-## 🚀 Project Structure
+Recogemos donaciones y las entregamos directamente a quienes necesitan transporte para votar. Cada peso va al camino, no a comisiones.
 
-Inside of your Astro project, you'll see the following folders and files:
+## Mas informacion
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
-
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- **Instagram** — [@imprentarepublicana](https://www.instagram.com/imprentarepublicana)
+- **Transparencia primera vuelta** — [Informe y soportes en Drive](https://drive.google.com/drive/folders/1XG48D1fr45MqMtTPUabJA3Pxybs-tIiK)
+- **Solicitar apoyo** — [Formulario](https://docs.google.com/forms/d/e/1FAIpQLSd419CyOXrRvWD1pOP_xyl7Q6H8cXFC7F_5l4K_zw7POAPKIg/viewform)
