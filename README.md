@@ -11,3 +11,9 @@ Recogemos donaciones y las entregamos directamente a quienes necesitan transport
 - **Instagram** — [@imprentarepublicana](https://www.instagram.com/imprentarepublicana)
 - **Transparencia primera vuelta** — [Informe y soportes en Drive](https://drive.google.com/drive/folders/1XG48D1fr45MqMtTPUabJA3Pxybs-tIiK)
 - **Solicitar apoyo** — [Formulario](https://docs.google.com/forms/d/e/1FAIpQLSd419CyOXrRvWD1pOP_xyl7Q6H8cXFC7F_5l4K_zw7POAPKIg/viewform)
+
+# Let's Protect the Vote
+
+Citizen initiative by Imprenta Republicana to cover the transport of voters in rural areas of Colombia to their polling stations. Presidential runoff, June 21, 2026.
+In many hamlets and rural districts, the nearest polling station is hours away on foot. Transport can cost what a family needs to eat for a week. No one should have to skip voting for lack of money for the fare.
+We collect donations and deliver them directly to those who need transport to vote. 
