@@ -25,11 +25,9 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Install lftp
-        run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp
-
-      - name: Deploy via SFTP
+      - name: Deploy via rsync
         run: |
-          lftp -u "${{ secrets.FTP_USER }},${{ secrets.FTP_PASS }}" \
-               -e "set sftp:auto-confirm yes; mirror -R --verbose dist/ ${{ secrets.FTP_PATH }}; quit" \
-               sftp://${{ secrets.FTP_HOST }}
+          sudo apt-get update -qq && sudo apt-get install -y -qq sshpass
+          sshpass -p "${{ secrets.FTP_PASS }}" rsync -avz --delete \
+            -e "ssh -o StrictHostKeyChecking=no -p 22" \
+            dist/ "${{ secrets.FTP_USER }}@${{ secrets.FTP_HOST }}:${{ secrets.FTP_PATH }}"
