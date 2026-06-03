@@ -25,9 +25,13 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Deploy via rsync
-        run: |
-          sudo apt-get update -qq && sudo apt-get install -y -qq sshpass
-          sshpass -p "${{ secrets.FTP_PASS }}" rsync -avz --delete \
-            -e "ssh -o StrictHostKeyChecking=no -p 22" \
-            dist/ "${{ secrets.FTP_USER }}@${{ secrets.FTP_HOST }}:${{ secrets.FTP_PATH }}"
+      - name: Deploy via FTPS
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASS }}
+          local-dir: ./dist/
+          server-dir: ${{ secrets.FTP_PATH }}
+          protocol: ftps
+          port: 21
