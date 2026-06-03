@@ -3,7 +3,6 @@ name: Build & Deploy to cPanel
 on:
   push:
     branches: [production]
-  # Allow manual trigger (useful for refreshing transparency data)
   workflow_dispatch:
 
 jobs:
@@ -26,11 +25,13 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Deploy via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      - name: Deploy via SFTP
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASS }}
-          local-dir: ./dist/
-          server-dir: ${{ secrets.FTP_PATH }}
+          port: 22
+          local_path: ./dist/*
+          remote_path: ${{ secrets.FTP_PATH }}
+          sftp_only: true
