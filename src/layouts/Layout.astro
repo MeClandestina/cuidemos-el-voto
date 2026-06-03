@@ -10,6 +10,15 @@ const { title } = Astro.props;
 <html lang="es" data-theme="cream" data-hero="1" data-phase="1">
   <head>
     <meta charset="utf-8" />
+
+    <!-- Google tag (gtag.js) -->
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-32T4QQL6B2"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-32T4QQL6B2');
+    </script>
     <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Campaña ciudadana para cubrir el transporte de votantes rurales hacia los puestos de votación. Dona ahora y haz que cada voto cuente." />
