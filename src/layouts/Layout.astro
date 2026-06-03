@@ -1,0 +1,86 @@
+---
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es" data-theme="cream" data-hero="1" data-phase="1">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Campana ciudadana para cubrir el transporte de votantes rurales hacia los puestos de votacion. Segunda vuelta presidencial, 21 de junio de 2026." />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Special+Elite&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Courier+Prime:wght@400;700&family=Yellowtail&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+    <title>{title}</title>
+  </head>
+  <body>
+
+    <!-- SVG ink filter -->
+    <svg width="0" height="0" style="position:absolute;pointer-events:none" aria-hidden="true">
+      <filter id="inkrough" x="-6%" y="-6%" width="112%" height="112%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.045" numOctaves="2" seed="4" result="warp" />
+        <feDisplacementMap in="SourceGraphic" in2="warp" scale="4.2" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+    </svg>
+
+    <header class="nav" id="nav">
+      <a class="brand" href="#top" aria-label="Imprenta Republicana — inicio">
+        <span class="brand__mark"><span class="star"></span></span>
+        <span class="brand__name"><b>Imprenta</b><span>Republicana</span></span>
+      </a>
+      <nav class="nav__links" id="navLinks">
+        <a href="#que-es">Que es</a>
+        <a href="#donar">Como donar</a>
+        <a href="#transparencia">Transparencia</a>
+        <a href="#solicitar">Solicitar apoyo</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+      <a class="nav__cta" href="#donar">&#9733; Donar</a>
+      <button class="nav__burger" id="burger" aria-label="Menu">Menu</button>
+    </header>
+
+    <main id="top">
+      <slot />
+    </main>
+
+    <footer class="footer" id="footer">
+      <div class="wrap">
+        <div class="footer__top">
+          <div class="footer__brand">
+            <div class="footer__logo ink-cream">Imprenta<br>Republicana</div>
+            <p>Populares y digitales</p>
+          </div>
+          <div class="footer__cols">
+            <div class="footer__col">
+              <h4>Campana</h4>
+              <a href="#que-es">Que es</a>
+              <a href="#donar">Como donar</a>
+              <a href="#transparencia">Transparencia</a>
+              <a href="#solicitar">Solicitar apoyo</a>
+            </div>
+            <div class="footer__col">
+              <h4>Siguenos</h4>
+              <a href="https://www.instagram.com/imprentarepublicana" target="_blank" rel="noopener">Instagram</a>
+              <a href="#" id="waFoot">WhatsApp</a>
+            </div>
+          </div>
+        </div>
+        <hr class="footer__rule" />
+        <div class="footer__bottom">
+          <span>&copy; 2026 Imprenta Republicana &middot; imprentarepublicana.co</span>
+          <span>Sin pasarelas de pago &middot; Cada peso al transporte <span class="star" style="font-size:11px"></span></span>
+        </div>
+      </div>
+    </footer>
+
+    <script is:inline src="/scripts/cv-main.js"></script>
+  </body>
+</html>

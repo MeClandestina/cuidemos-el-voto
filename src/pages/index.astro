@@ -1,0 +1,258 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getLatestTransparency, formatCOP } from '../data/fetchSheet';
+import {
+  SHOW_PHASE2_METRICS,
+  GOOGLE_FORM_URL,
+  INSTAGRAM_URL,
+  WHATSAPP_URL,
+} from '../data/config';
+
+const data = await getLatestTransparency();
+const daysLeft = Math.max(0, Math.ceil((new Date(2026, 5, 21).getTime() - Date.now()) / 86400000));
+
+function formatCO(n: number): string {
+  return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+}
+---
+
+<Layout title="Cuidemos el Voto · Imprenta Republicana">
+
+<!-- ================= HERO ================= -->
+<section class="hero regmark" id="hero">
+  <div class="hero__deco" aria-hidden="true">
+    <span class="star s1"></span><span class="star s2"></span><span class="star s3"></span>
+  </div>
+  <div class="wrap">
+    <div class="hero__grid">
+      <div class="hero__copy">
+        <div class="deco-rule"><span class="dl"></span><span class="lbl"><span class="star"></span> 21 de junio &middot; Segunda vuelta <span class="star"></span></span><span class="dl dl--r"></span></div>
+        <h1 class="hero__title ink-fx">
+          <span class="l1">Cuidemos el</span>
+          <span class="l2">VOTO</span>
+          <span class="l3"><span class="tiny">de las</span> PERIFERIAS</span>
+        </h1>
+        <span class="hero__flourish">para que nadie se quede sin llegar</span>
+        <p class="hero__sub">En la Colombia rural, miles de personas quieren votar pero no tienen como pagar el transporte hasta su puesto de votacion. Reunimos esos pesos.</p>
+        <div class="hero__actions">
+          <a class="btn" href="#donar"><span class="star"></span> Donar ahora</a>
+          <a class="btn btn--ghost" href="#solicitar">Solicitar apoyo</a>
+        </div>
+        <div class="hero__meta">
+          <span>Segunda vuelta &middot; <b>21 jun 2026</b></span>
+          <span>Faltan <b id="countdown">{daysLeft}</b> dias</span>
+          <span>Cada peso &rarr; <b>transporte</b></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= COUNTDOWN BAND ================= -->
+<section class="cd-band" id="countdown-band" aria-label="Cuenta regresiva para la segunda vuelta">
+  <div class="wrap cd-inner">
+    <div class="cd-head">
+      <div class="deco-rule"><span class="dl"></span><span class="lbl"><span class="star"></span> Cuenta regresiva <span class="star"></span></span><span class="dl dl--r"></span></div>
+      <p class="cd-title ink-cream">Faltan para la segunda vuelta</p>
+    </div>
+    <div class="cd-clock" id="cdClock" role="timer" aria-live="off">
+      <div class="cd-unit"><span class="cd-n ink-cream" id="cdD">00</span><span class="cd-l">dias</span></div>
+      <span class="cd-sep">:</span>
+      <div class="cd-unit"><span class="cd-n ink-cream" id="cdH">00</span><span class="cd-l">horas</span></div>
+      <span class="cd-sep">:</span>
+      <div class="cd-unit"><span class="cd-n ink-cream" id="cdM">00</span><span class="cd-l">min</span></div>
+      <span class="cd-sep">:</span>
+      <div class="cd-unit"><span class="cd-n ink-cream" id="cdS">00</span><span class="cd-l">seg</span></div>
+    </div>
+    <p class="cd-note">Cada persona sin transporte es un voto que se queda en casa. <strong>Dona hoy.</strong></p>
+  </div>
+</section>
+
+<!-- ================= QUE ES ================= -->
+<section class="section" id="que-es">
+  <div class="wrap">
+    <div class="que__grid">
+      <div class="que__body reveal">
+        <div class="section__head">
+          <span class="kicker">Que es &middot; Por que</span>
+          <h2 class="section__title ink-dark">Que la distancia <span class="script">no decida</span> la eleccion</h2>
+        </div>
+        <p>En muchas veredas y corregimientos, el puesto de votacion mas cercano queda a horas de camino: una lancha por el rio, una chiva por la trocha, una moto que cobra lo que muchas familias no tienen un domingo de elecciones.</p>
+        <p><strong>Cuidemos el Voto</strong> es una iniciativa ciudadana de Imprenta Republicana. Reunimos donaciones y las convertimos en transporte para que las colectivos de las periferias lleguen a las urnas el <strong>21 de junio</strong>.</p>
+      </div>
+      <div class="que__photo photo-bare reveal" data-d="1">
+        <img src="/assets/buseta.png" alt="Buseta rural repleta de personas camino al puesto de votacion" width="1152" height="912" />
+      </div>
+    </div>
+
+    <div class="stat-band reveal">
+      <div class="stat">
+        <div class="stat__num ink-red" data-count="3742">0</div>
+        <div class="stat__lbl">Personas que llegaron a votar</div>
+      </div>
+      <div class="stat">
+        <div class="stat__num ink-red" data-prefix="$" data-count="29136000">0</div>
+        <div class="stat__lbl">Recaudado en primera vuelta</div>
+      </div>
+      <div class="stat">
+        <div class="stat__num ink-red" data-prefix="$" data-count="72046000">0</div>
+        <div class="stat__lbl">Solicitado por las colectivos</div>
+      </div>
+    </div>
+    <p class="tr__note" style="text-align:center">En primera vuelta las colectivos pidieron <strong>$72.046.000</strong> y reunimos <strong>$29.136.000</strong> &mdash; suficiente para que <strong>3.742 personas</strong> llegaran a votar. Esta vez queremos cerrar la brecha.</p>
+    <div style="text-align:center;margin-top:18px;">
+      <a class="btn btn--ghost" href="https://drive.google.com/drive/folders/1XG48D1fr45MqMtTPUabJA3Pxybs-tIiK" target="_blank" rel="noopener"><span class="star"></span> Ver fotos y soportes de primera vuelta</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= COMO DONAR ================= -->
+<section class="section section--alt" id="donar">
+  <div class="wrap">
+    <div class="section__head reveal">
+      <span class="kicker">Como donar</span>
+      <h2 class="section__title ink-dark">Dos formas, <span class="script">un solo destino</span></h2>
+    </div>
+
+    <div class="donar__grid">
+      <!-- NEQUI -->
+      <div class="pay-card reveal">
+        <div class="pay-card__head">
+          <span class="pay-card__name ink-dark">Nequi</span>
+          <span class="pay-card__tag tag--nequi">Escanea y dona</span>
+        </div>
+        <div class="qr-real regmark">
+          <img src="/assets/qr-nequi.jpg" alt="Codigo QR de Nequi para donar" width="280" height="280" loading="lazy" />
+        </div>
+        <p class="qr-cap">Abre <strong>Nequi</strong> &rsaquo; <em>Pagar</em> &rsaquo; <em>Escanear QR</em></p>
+        <p class="qr-holder">A nombre de <strong>Valentina Arteaga</strong></p>
+      </div>
+
+      <!-- OTROS BANCOS -->
+      <div class="pay-card reveal" data-d="1">
+        <div class="pay-card__head">
+          <span class="pay-card__name ink-dark">Otros bancos</span>
+          <span class="pay-card__tag tag--banco">Escanea y dona</span>
+        </div>
+        <div class="qr-real regmark">
+          <img src="/assets/qr-bancos.jpg" alt="Codigo QR para transferencia desde otros bancos" width="280" height="280" loading="lazy" />
+        </div>
+        <p class="qr-cap">Escanealo desde la app de <strong>tu banco</strong> (Bancolombia, Daviplata, PSE&hellip;)</p>
+        <p class="qr-holder">A nombre de <strong>Valentina Arteaga</strong></p>
+      </div>
+    </div>
+
+    <div class="trust reveal">
+      <span class="star"></span>
+      <p>Cada peso va al transporte, no a comisiones de plataforma.</p>
+    </div>
+
+    <p class="donar__intl reveal"><span class="star"></span> Colaboras desde el exterior? Escribenos por DM en Instagram <a href={INSTAGRAM_URL} target="_blank" rel="noopener">@imprentarepublicana</a> y coordinamos tu aporte.</p>
+  </div>
+</section>
+
+<!-- ================= TRANSPARENCIA ================= -->
+<section class="section" id="transparencia">
+  <div class="wrap">
+    <div class="section__head reveal" style="text-align:center">
+      <span class="kicker" style="justify-content:center">Transparencia</span>
+      <h2 class="section__title ink-dark">Las cuentas, <span class="script">a la luz</span></h2>
+    </div>
+
+    <div class="tr__panel regmark reveal">
+      <div class="tr__label">Total recaudado &middot; a la fecha</div>
+      <div class="tr__big ink-red">
+        <span class="cur">$</span><span id="recaudado" data-count={data.totalRecaudado.toString()}>{formatCO(data.totalRecaudado)}</span>
+      </div>
+      <div class="tr__sub">pesos colombianos &middot; <b>actualizado a diario por el equipo</b></div>
+
+      <div class="tr__meta">
+        <div class="m"><div class="n" id="lastUpdate">{data.fecha}</div><div class="t">Ultima actualizacion</div></div>
+        <div class="m"><div class="n" id="daysLeft">{daysLeft}</div><div class="t">Dias para la votacion</div></div>
+        <div class="m phase2"><div class="n" data-count="0" data-suffix="">0</div><div class="t">Votos pidiendo ayuda</div></div>
+        <div class="m phase2"><div class="n">$0</div><div class="t">Total necesitado</div></div>
+      </div>
+
+      <div class="tr__actions">
+        <a class="btn" href="https://drive.google.com/drive/folders/1XG48D1fr45MqMtTPUabJA3Pxybs-tIiK" target="_blank" rel="noopener"><span class="star"></span> Informe primera vuelta (PDF)</a>
+        <a class="btn btn--ghost" href="https://drive.google.com/drive/folders/1XG48D1fr45MqMtTPUabJA3Pxybs-tIiK" target="_blank" rel="noopener">Fotos y soportes en Drive</a>
+        <a class="btn btn--ghost" href="#" id="sheetBtn">Ver hoja de calculo publica</a>
+      </div>
+      <p class="tr__note">El informe y la carpeta de Drive incluyen las fotos de las colectivos llegando a votar en primera vuelta y los soportes de cada gasto. Los datos se publican desde una hoja de calculo de Google y se actualizan a diario.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SOLICITAR APOYO ================= -->
+<section class="section section--alt" id="solicitar">
+  <div class="wrap">
+    <div class="sol__grid">
+      <div class="sol__intro reveal">
+        <div class="section__head">
+          <span class="kicker">Solicitar apoyo</span>
+          <h2 class="section__title ink-dark">Tu colectivo necesita <span class="script">transporte?</span></h2>
+        </div>
+        <p class="lead">Si lideras una colectivo rural que necesita ayuda para llegar a votar, cuentanos. Revisamos cada solicitud y coordinamos la donacion.</p>
+        <p>En el formulario te pediremos algunos <strong>datos personales</strong> para confirmar quien eres, y <strong>datos de tu colectivo</strong> &mdash;donde queda, cuantas personas son y que transporte necesitan&mdash; para asegurarnos de que la ayuda llegue a quien de verdad la necesita.</p>
+        <p class="sol__seal"><span class="star"></span> Tus datos se usan solo para coordinar el transporte.</p>
+      </div>
+      <div class="form-slot reveal" data-d="1">
+        <span class="fs-badge">&#9635; Formulario de solicitud</span>
+        <h3>Cuentanos sobre tu colectivo</h3>
+        <p>Toma pocos minutos. Responde el formulario y nos pondremos en contacto para coordinar la donacion del transporte.</p>
+        {GOOGLE_FORM_URL ? (
+          <a class="btn" href={GOOGLE_FORM_URL} target="_blank" rel="noopener"><span class="star"></span> Abrir formulario</a>
+        ) : (
+          <a class="btn" href="#" id="formBtn"><span class="star"></span> Abrir formulario</a>
+        )}
+        <p class="form-help">Tienes preguntas? Escribenos por DM en Instagram <a href={INSTAGRAM_URL} target="_blank" rel="noopener">@imprentarepublicana</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACTO ================= -->
+<section class="section contacto" id="contacto">
+  <div class="wrap">
+    <span class="kicker solo" style="justify-content:center">Contacto</span>
+    <h2 class="contacto__title reveal ink-dark">El pueblo se cuida en <span class="script">colectivo.</span></h2>
+    <div class="contacto__links reveal" data-d="1">
+      <a class="cta-link" href={INSTAGRAM_URL} target="_blank" rel="noopener"><span class="ic">&#9678;</span> @imprentarepublicana</a>
+      <a class="cta-link" href={WHATSAPP_URL} target="_blank" rel="noopener"><span class="ic">&#9742;</span> WhatsApp &middot; escribenos</a>
+    </div>
+    <div class="star-divider" style="margin-top:46px"><span class="star"></span><span class="star"></span><span class="star"></span></div>
+  </div>
+</section>
+
+<script is:inline>
+// Live fetch from Google Sheet — updates transparency number on every page load
+(function(){
+  var SHEET_CSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRCBWtEHOpbJu9dDqUwqUKhkGAVmhMg09YpwwEHCIX-DmpALsRyvqx5KHzYs1vVEuWaYVbE8yuezwIl/pub?output=csv';
+  function fmtCO(n){ return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g,'.'); }
+  fetch(SHEET_CSV).then(function(r){ return r.text(); }).then(function(csv){
+    var rows = csv.trim().split('\n');
+    if(rows.length < 2) return;
+    // Handle quoted CSV fields (Google Sheets wraps numbers with commas in quotes)
+    var last = rows[rows.length - 1];
+    var cols = [];
+    var inQuote = false, field = '';
+    for(var i=0;i<last.length;i++){
+      var c = last[i];
+      if(c==='"'){ inQuote=!inQuote; }
+      else if(c===','&&!inQuote){ cols.push(field); field=''; }
+      else { field+=c; }
+    }
+    cols.push(field);
+    var fecha = (cols[0]||'').trim();
+    var raw = (cols[1]||'0').trim().split('.')[0].replace(/[^\d]/g,'');
+    var total = parseInt(raw, 10);
+    if(!total) return;
+    var el = document.getElementById('recaudado');
+    if(el){ el.setAttribute('data-count', total); el.textContent = fmtCO(total); }
+    var dateEl = document.getElementById('lastUpdate');
+    if(dateEl && fecha) dateEl.textContent = fecha;
+  }).catch(function(){});
+})();
+</script>
+
+</Layout>
