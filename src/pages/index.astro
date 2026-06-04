@@ -234,7 +234,7 @@ function formatCO(n: number): string {
 <script is:inline>
 // Live fetch from Google Sheet — updates transparency number on every page load
 (function(){
-  var SHEET_CSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRCBWtEHOpbJu9dDqUwqUKhkGAVmhMg09YpwwEHCIX-DmpALsRyvqx5KHzYs1vVEuWaYVbE8yuezwIl/pub?output=csv';
+  var SHEET_CSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRCBWtEHOpbJu9dDqUwqUKhkGAVmhMg09YpwwEHCIX-DmpALsRyvqx5KHzYs1vVEuWaYVbE8yuezwIl/pub?output=csv&_=' + Date.now();
   function fmtCO(n){ return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g,'.'); }
   fetch(SHEET_CSV).then(function(r){ return r.text(); }).then(function(csv){
     var rows = csv.trim().split('\n');
