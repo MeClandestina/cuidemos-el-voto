@@ -12,6 +12,7 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^6.4.3"
+    "astro": "^6.4.3",
+    "posthog-js": "^1.379.3"
   }
 }

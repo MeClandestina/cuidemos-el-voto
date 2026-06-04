@@ -262,4 +262,53 @@ function formatCO(n: number): string {
 })();
 </script>
 
+<script is:inline>
+(function () {
+  function onReady(fn) {
+    if (document.readyState !== 'loading') { fn(); } else { document.addEventListener('DOMContentLoaded', fn); }
+  }
+
+  onReady(function () {
+    // donate_cta_clicked — hero "Donar ahora" and nav "Donar" buttons
+    document.querySelectorAll('a[href="#donar"].btn, a.nav__cta[href="#donar"]').forEach(function (el) {
+      el.addEventListener('click', function () {
+        window.posthog?.capture('donate_cta_clicked', { location: el.classList.contains('nav__cta') ? 'nav' : 'hero' });
+      });
+    });
+
+    // gofundme_clicked — GoFundMe external link
+    var gofundmeLink = document.querySelector('a[href*="gofundme.com"]');
+    if (gofundmeLink) {
+      gofundmeLink.addEventListener('click', function () {
+        window.posthog?.capture('gofundme_clicked');
+      });
+    }
+
+    // support_form_opened — "Abrir formulario" button in the Solicitar Apoyo section
+    var formLinks = document.querySelectorAll('#solicitar a.btn, #solicitar a#formBtn');
+    formLinks.forEach(function (el) {
+      el.addEventListener('click', function () {
+        window.posthog?.capture('support_form_opened');
+      });
+    });
+
+    // transparency_report_opened — links to Drive, PDF report, or Google Sheets in the transparency section
+    document.querySelectorAll('#transparencia a[href], .que__body a[href*="drive.google.com"]').forEach(function (el) {
+      el.addEventListener('click', function () {
+        var href = el.getAttribute('href') || '';
+        var doc_type = href.includes('spreadsheets') ? 'google_sheets' : href.includes('drive.google') ? 'google_drive' : 'other';
+        window.posthog?.capture('transparency_report_opened', { doc_type: doc_type, url: href });
+      });
+    });
+
+    // contact_instagram_clicked — Instagram contact links
+    document.querySelectorAll('a[href*="instagram.com"]').forEach(function (el) {
+      el.addEventListener('click', function () {
+        window.posthog?.capture('contact_instagram_clicked', { location: el.closest('section')?.id || 'unknown' });
+      });
+    });
+  });
+})();
+</script>
+
 </Layout>
