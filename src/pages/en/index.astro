@@ -1,0 +1,239 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getLatestTransparency } from '../../data/fetchSheet';
+import { INSTAGRAM_URL } from '../../data/config';
+
+const data = await getLatestTransparency();
+const daysLeft = Math.max(0, Math.ceil((new Date(2026, 5, 21).getTime() - Date.now()) / 86400000));
+
+function formatCO(n: number): string {
+  return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+}
+---
+
+<Layout title="Protect the Vote · Imprenta Republicana" lang="en">
+
+<!-- ================= HERO ================= -->
+<section class="hero regmark" id="hero">
+  <div class="hero__deco" aria-hidden="true">
+    <span class="star s1"></span><span class="star s2"></span><span class="star s3"></span>
+  </div>
+  <div class="wrap">
+    <div class="hero__grid">
+      <div class="hero__copy">
+        <div class="deco-rule"><span class="dl"></span><span class="lbl"><span class="star"></span> June 21 &middot; Runoff election <span class="star"></span></span><span class="dl dl--r"></span></div>
+        <h1 class="hero__title ink-fx">
+          <span class="l1">Protect the</span>
+          <span class="l2" style="margin-bottom:-0.08em;">VOTE</span>
+          <span class="l3" style="margin-top:-0.05em;"><span class="tiny">in rural</span> COLOMBIA</span>
+        </h1>
+        <span class="hero__flourish" style="margin-bottom:-8px;">so no one is left without voting</span>
+        <p class="hero__sub" style="margin-top:0;">In rural Colombia, thousands want to vote but polling stations are hours away — by river, by dirt road, by mountain trail. Many communities simply can't reach the polls without help. Help them cast their vote.</p>
+        <div class="hero__actions">
+          <a class="btn" href="#donate"><span class="star"></span> Donate now</a>
+          <a class="btn btn--ghost" href="#about">Learn more</a>
+        </div>
+        <div class="hero__meta">
+          <span>Runoff election &middot; <b>21 Jun 2026</b></span>
+          <span><b id="countdown">{daysLeft}</b> days left</span>
+          <span>Every peso &rarr; <b>transport</b></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= COUNTDOWN BAND ================= -->
+<section class="cd-band" id="countdown-band" aria-label="Countdown to the runoff election">
+  <div class="wrap cd-inner">
+    <div class="cd-head">
+      <div class="deco-rule"><span class="dl"></span><span class="lbl"><span class="star"></span> Countdown <span class="star"></span></span><span class="dl dl--r"></span></div>
+      <p class="cd-title ink-cream">Time left until the runoff election</p>
+    </div>
+    <div class="cd-clock" id="cdClock" role="timer" aria-live="off">
+      <div class="cd-unit"><span class="cd-n ink-cream" id="cdD">00</span><span class="cd-l">days</span></div>
+      <span class="cd-sep">:</span>
+      <div class="cd-unit"><span class="cd-n ink-cream" id="cdH">00</span><span class="cd-l">hours</span></div>
+      <span class="cd-sep">:</span>
+      <div class="cd-unit"><span class="cd-n ink-cream" id="cdM">00</span><span class="cd-l">min</span></div>
+      <span class="cd-sep">:</span>
+      <div class="cd-unit"><span class="cd-n ink-cream" id="cdS">00</span><span class="cd-l">sec</span></div>
+    </div>
+    <p class="cd-note">Every person without transport is a vote that stays home. <strong>Donate today.</strong></p>
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section class="section" id="about">
+  <div class="wrap">
+    <div class="que__grid">
+      <div class="que__body reveal">
+        <div class="section__head">
+          <span class="kicker">What &middot; Why</span>
+          <h2 class="section__title ink-dark">Distance shouldn't <span class="script">decide</span> an election</h2>
+        </div>
+        <p>In many rural villages across Colombia, the nearest polling station is hours away &mdash; a boat down the river, a bus through unpaved roads, a motorbike ride that costs more than a family can spare on election day.</p>
+        <p><strong>Cuidemos el Voto</strong> (Protect the Vote) is a citizen-led initiative by Imprenta Republicana. We collect donations and turn them into transport so rural communities can reach the polls on <strong>June 21</strong>.</p>
+      </div>
+      <div class="que__photo photo-bare reveal" data-d="1">
+        <img src="/assets/buseta.png" alt="Packed rural bus on the way to the polling station" width="1152" height="912" />
+      </div>
+    </div>
+
+    <div class="stat-band reveal">
+      <div class="stat">
+        <div class="stat__num ink-red" data-count="3742">0</div>
+        <div class="stat__lbl">People who made it to the polls</div>
+      </div>
+      <div class="stat">
+        <div class="stat__num ink-red" data-prefix="$" data-count="29136000">0</div>
+        <div class="stat__lbl">Raised in the first round</div>
+      </div>
+      <div class="stat">
+        <div class="stat__num ink-red" data-prefix="$" data-count="72046000">0</div>
+        <div class="stat__lbl">Requested by communities</div>
+      </div>
+    </div>
+    <p class="tr__note" style="text-align:center">In the first round, communities requested <strong>$72,046,000 COP</strong> and we raised <strong>$29,136,000 COP</strong> &mdash; enough for <strong>3,742 people</strong> to vote. This time we want to close the gap.</p>
+    <div style="text-align:center;margin-top:18px;">
+      <a class="btn btn--ghost" href="https://drive.google.com/drive/folders/1XG48D1fr45MqMtTPUabJA3Pxybs-tIiK" target="_blank" rel="noopener"><span class="star"></span> See first-round photos &amp; receipts</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DONATE ================= -->
+<section class="section section--alt" id="donate">
+  <div class="wrap">
+    <div class="section__head reveal">
+      <span class="kicker">How to donate</span>
+      <h2 class="section__title ink-dark">Every dollar <span class="script">gets them there</span></h2>
+    </div>
+
+    <div class="pay-card reveal" style="text-align:center;background:var(--accent);color:var(--crema);border-color:var(--ink);">
+      <div class="pay-card__head" style="justify-content:center;">
+        <span class="pay-card__name" style="color:var(--crema);">Donate from anywhere</span>
+        <span class="pay-card__tag" style="color:var(--crema);border-color:var(--crema);">GoFundMe</span>
+      </div>
+      <p style="margin:12px 0 6px;font-family:var(--font-body);font-size:clamp(16px,2vw,19px);">Donate from any country through GoFundMe. Every contribution goes directly to covering transport for rural voters in Colombia.</p>
+      <p style="font-family:var(--font-stamp);text-transform:uppercase;letter-spacing:.08em;font-size:12px;color:rgba(245,240,225,.7);margin-bottom:18px;">Platform fees apply</p>
+      <a class="btn" href="https://www.gofundme.com/f/help-remote-colombians-reach-the-polls" target="_blank" rel="noopener" style="background:var(--crema);color:var(--accent);border-color:var(--crema);"><span class="star"></span> Donate on GoFundMe</a>
+    </div>
+
+    <p class="donar__intl reveal"><span class="star"></span> Have a Colombian bank account? <a href="/" style="color:var(--accent);border-bottom:2px solid var(--accent);">Visit the Spanish version</a> for direct transfer options with zero fees.</p>
+  </div>
+</section>
+
+<!-- ================= TRANSPARENCY ================= -->
+<section class="section" id="transparency">
+  <div class="wrap">
+    <div class="section__head reveal" style="text-align:center">
+      <span class="kicker" style="justify-content:center">Transparency</span>
+      <h2 class="section__title ink-dark">Full accountability, <span class="script">always</span></h2>
+    </div>
+
+    <div class="tr__panel regmark reveal">
+      <div class="tr__label">Total raised &middot; to date</div>
+      <div class="tr__big ink-red">
+        <span class="cur">$</span><span id="recaudado" data-count={data.totalRecaudado.toString()}>{formatCO(data.totalRecaudado)}</span>
+      </div>
+      <div class="tr__sub">Colombian pesos &middot; <b>updated daily by the team</b></div>
+
+      <div class="tr__meta">
+        <div class="m"><div class="n" id="lastUpdate">{data.fecha}</div><div class="t">Last updated</div></div>
+        <div class="m"><div class="n" id="daysLeft">{daysLeft}</div><div class="t">Days until election</div></div>
+      </div>
+
+      <div class="tr__actions">
+        <a class="btn" href="https://drive.google.com/drive/folders/1XG48D1fr45MqMtTPUabJA3Pxybs-tIiK" target="_blank" rel="noopener"><span class="star"></span> First-round report</a>
+        <a class="btn btn--ghost" href="https://drive.google.com/drive/folders/1XG48D1fr45MqMtTPUabJA3Pxybs-tIiK" target="_blank" rel="noopener">Photos &amp; receipts on Drive</a>
+        <a class="btn btn--ghost" href="https://docs.google.com/spreadsheets/d/1orrl3OXyw5KRxZVZosZyfMw9_tBehXo-WNRspVWS0bc/edit?gid=0#gid=0" target="_blank" rel="noopener">Daily donation report</a>
+      </div>
+      <p class="tr__note">The report and Drive folder include photos of communities arriving to vote in the first round and receipts for every expense. Data is published from a Google spreadsheet and updated daily.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="section contacto" id="contact">
+  <div class="wrap">
+    <span class="kicker solo" style="justify-content:center">Contact</span>
+    <h2 class="contacto__title reveal ink-dark">The people look after <span class="script">each other.</span></h2>
+    <div class="contacto__links reveal" data-d="1">
+      <a class="cta-link" href={INSTAGRAM_URL} target="_blank" rel="noopener"><span class="ic">&#9678;</span> @imprentarepublicana</a>
+    </div>
+    <div class="star-divider" style="margin-top:46px"><span class="star"></span><span class="star"></span><span class="star"></span></div>
+  </div>
+</section>
+
+<script is:inline>
+// Live fetch from Google Sheet
+(function(){
+  var SHEET_CSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRCBWtEHOpbJu9dDqUwqUKhkGAVmhMg09YpwwEHCIX-DmpALsRyvqx5KHzYs1vVEuWaYVbE8yuezwIl/pub?output=csv&_=' + Date.now();
+  function fmtCO(n){ return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g,'.'); }
+  fetch(SHEET_CSV).then(function(r){ return r.text(); }).then(function(csv){
+    var rows = csv.trim().split('\n');
+    if(rows.length < 2) return;
+    var last = rows[rows.length - 1];
+    var cols = [];
+    var inQuote = false, field = '';
+    for(var i=0;i<last.length;i++){
+      var c = last[i];
+      if(c==='"'){ inQuote=!inQuote; }
+      else if(c===','&&!inQuote){ cols.push(field); field=''; }
+      else { field+=c; }
+    }
+    cols.push(field);
+    var fecha = (cols[0]||'').trim();
+    var raw = (cols[1]||'0').trim().split('.')[0].replace(/[^\d]/g,'');
+    var total = parseInt(raw, 10);
+    if(!total) return;
+    var el = document.getElementById('recaudado');
+    if(el){ el.setAttribute('data-count', total); el.dataset.done = ''; el.textContent = fmtCO(total); }
+    var dateEl = document.getElementById('lastUpdate');
+    if(dateEl && fecha) dateEl.textContent = fecha;
+  }).catch(function(){});
+})();
+</script>
+
+<script is:inline>
+(function () {
+  function onReady(fn) {
+    if (document.readyState !== 'loading') { fn(); } else { document.addEventListener('DOMContentLoaded', fn); }
+  }
+
+  onReady(function () {
+    // donate_cta_clicked — hero "Donate now" button
+    document.querySelectorAll('a[href="#donate"].btn').forEach(function (el) {
+      el.addEventListener('click', function () {
+        window.posthog?.capture('donate_cta_clicked', { location: 'hero', lang: 'en' });
+      });
+    });
+
+    // gofundme_clicked
+    var gofundmeLink = document.querySelector('a[href*="gofundme.com"]');
+    if (gofundmeLink) {
+      gofundmeLink.addEventListener('click', function () {
+        window.posthog?.capture('gofundme_clicked', { lang: 'en' });
+      });
+    }
+
+    // transparency_report_opened
+    document.querySelectorAll('#transparency a[href], a[href*="drive.google.com"]').forEach(function (el) {
+      el.addEventListener('click', function () {
+        var href = el.getAttribute('href') || '';
+        var doc_type = href.includes('spreadsheets') ? 'google_sheets' : href.includes('drive.google') ? 'google_drive' : 'other';
+        window.posthog?.capture('transparency_report_opened', { doc_type: doc_type, url: href, lang: 'en' });
+      });
+    });
+
+    // contact_instagram_clicked
+    document.querySelectorAll('a[href*="instagram.com"]').forEach(function (el) {
+      el.addEventListener('click', function () {
+        window.posthog?.capture('contact_instagram_clicked', { location: el.closest('section')?.id || 'unknown', lang: 'en' });
+      });
+    });
+  });
+})();
+</script>
+
+</Layout>

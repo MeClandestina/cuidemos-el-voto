@@ -3,13 +3,14 @@ import PostHog from '../components/posthog.astro';
 
 interface Props {
   title: string;
+  lang?: string;
 }
 
-const { title } = Astro.props;
+const { title, lang = 'es' } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="es" data-theme="cream" data-hero="1" data-phase="1">
+<html lang={lang} data-theme="cream" data-hero="1" data-phase="1">
   <head>
     <meta charset="utf-8" />
 
@@ -25,22 +26,28 @@ const { title } = Astro.props;
     </script>
     <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Campaña ciudadana para cubrir el transporte de votantes rurales hacia los puestos de votación. Dona ahora y haz que cada voto cuente." />
+    <meta name="description" content={lang === 'en'
+      ? "Citizen campaign to cover transport for rural Colombian voters to reach the polls. Donate now and make every vote count."
+      : "Campaña ciudadana para cubrir el transporte de votantes rurales hacia los puestos de votación. Dona ahora y haz que cada voto cuente."} />
     <meta name="generator" content={Astro.generator} />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Cuidemos el Voto — Imprenta Republicana" />
-    <meta property="og:description" content="Campaña ciudadana para cubrir el transporte de votantes rurales hacia los puestos de votación. Dona ahora y haz que cada voto cuente." />
-    <meta property="og:image" content="https://imprentarepublicana.co/assets/og.jpg" />
-    <meta property="og:url" content="https://imprentarepublicana.co" />
-    <meta property="og:locale" content="es_CO" />
+    <meta property="og:title" content={lang === 'en' ? "Protect the Vote · Imprenta Republicana" : "Cuidemos el Voto · Imprenta Republicana"} />
+    <meta property="og:description" content={lang === 'en'
+      ? "Citizen campaign to cover transport for rural Colombian voters to reach the polls. Donate now and make every vote count."
+      : "Campaña ciudadana para cubrir el transporte de votantes rurales hacia los puestos de votación. Dona ahora y haz que cada voto cuente."} />
+    <meta property="og:image" content={lang === 'en' ? "https://imprentarepublicana.co/assets/OGEN.jpg" : "https://imprentarepublicana.co/assets/og.jpg"} />
+    <meta property="og:url" content={lang === 'en' ? "https://imprentarepublicana.co/en/" : "https://imprentarepublicana.co"} />
+    <meta property="og:locale" content={lang === 'en' ? "en_US" : "es_CO"} />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Cuidemos el Voto — Imprenta Republicana" />
-    <meta name="twitter:description" content="Campaña ciudadana para cubrir el transporte de votantes rurales hacia los puestos de votación. Dona ahora y haz que cada voto cuente." />
-    <meta name="twitter:image" content="https://imprentarepublicana.co/assets/og.jpg" />
+    <meta name="twitter:title" content={lang === 'en' ? "Protect the Vote · Imprenta Republicana" : "Cuidemos el Voto · Imprenta Republicana"} />
+    <meta name="twitter:description" content={lang === 'en'
+      ? "Citizen campaign to cover transport for rural Colombian voters to reach the polls. Donate now and make every vote count."
+      : "Campaña ciudadana para cubrir el transporte de votantes rurales hacia los puestos de votación. Dona ahora y haz que cada voto cuente."} />
+    <meta name="twitter:image" content={lang === 'en' ? "https://imprentarepublicana.co/assets/OGEN.jpg" : "https://imprentarepublicana.co/assets/og.jpg"} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Special+Elite&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Courier+Prime:wght@400;700&family=Yellowtail&display=swap" rel="stylesheet" />
@@ -63,14 +70,29 @@ const { title } = Astro.props;
         <span class="brand__name"><b>Imprenta</b><span>Republicana</span></span>
       </a>
       <nav class="nav__links" id="navLinks">
-        <a href="#que-es">Qué es</a>
-        <a href="#donar">Cómo donar</a>
-        <a href="#transparencia">Transparencia</a>
-        <a href="#solicitar">Solicitar apoyo</a>
-        <a href="#contacto">Contacto</a>
+        {lang === 'en' ? (
+          <a href="#about">About</a>
+          <a href="#donate" class="nav__cta" style="border:2px solid var(--ink);background:var(--accent);color:var(--crema);padding:8px 14px;">&#9733; Donate</a>
+          <a href="#transparency">Transparency</a>
+          <a href="#contact">Contact</a>
+          <a href="/" style="font-size:11px;opacity:.7;">ES</a>
+        ) : (
+          <a href="#que-es">Qué es</a>
+          <a href="#donar" class="nav__cta" style="border:2px solid var(--ink);background:var(--accent);color:var(--crema);padding:8px 14px;">&#9733; Donar</a>
+          <a href="#transparencia">Transparencia</a>
+          <a href="#solicitar">Solicitar apoyo</a>
+          <a href="#contacto">Contacto</a>
+          <a href="/en/" style="font-size:11px;opacity:.7;">EN</a>
+        )}
       </nav>
-      <a class="nav__cta" href="#donar">&#9733; Donar</a>
-      <button class="nav__burger" id="burger" aria-label="Menu">Menu</button>
+      <div style="display:flex;align-items:center;gap:8px;">
+        {lang === 'en' ? (
+          <a class="nav__cta" href="#donate" style="display:none;" id="mobileDonate">&#9733; Donate</a>
+        ) : (
+          <a class="nav__cta" href="#donar" style="display:none;" id="mobileDonate">&#9733; Donar</a>
+        )}
+        <button class="nav__burger" id="burger" aria-label="Menu">Menu</button>
+      </div>
     </header>
 
     <main id="top">
@@ -85,18 +107,38 @@ const { title } = Astro.props;
             <p>Populares y digitales</p>
           </div>
           <div class="footer__cols">
-            <div class="footer__col">
-              <h4>Campaña</h4>
-              <a href="#que-es">Qué es</a>
-              <a href="#donar">Cómo donar</a>
-              <a href="#transparencia">Transparencia</a>
-              <a href="#solicitar">Solicitar apoyo</a>
-            </div>
-            <div class="footer__col">
-              <h4>Síguenos</h4>
-              <a href="https://www.instagram.com/imprentarepublicana" target="_blank" rel="noopener">Instagram</a>
-              <a href="#" id="waFoot">WhatsApp</a>
-            </div>
+            {lang === 'en' ? (
+              <div class="footer__col">
+                <h4>Campaign</h4>
+                <a href="#about">About</a>
+                <a href="#donate">Donate</a>
+                <a href="#transparency">Transparency</a>
+              </div>
+              <div class="footer__col">
+                <h4>Follow us</h4>
+                <a href="https://www.instagram.com/imprentarepublicana" target="_blank" rel="noopener">Instagram</a>
+              </div>
+              <div class="footer__col">
+                <h4>Language</h4>
+                <a href="/">Español</a>
+              </div>
+            ) : (
+              <div class="footer__col">
+                <h4>Campaña</h4>
+                <a href="#que-es">Qué es</a>
+                <a href="#donar">Cómo donar</a>
+                <a href="#transparencia">Transparencia</a>
+                <a href="#solicitar">Solicitar apoyo</a>
+              </div>
+              <div class="footer__col">
+                <h4>Síguenos</h4>
+                <a href="https://www.instagram.com/imprentarepublicana" target="_blank" rel="noopener">Instagram</a>
+              </div>
+              <div class="footer__col">
+                <h4>Idioma</h4>
+                <a href="/en/">English</a>
+              </div>
+            )}
           </div>
         </div>
         <hr class="footer__rule" />
@@ -107,6 +149,12 @@ const { title } = Astro.props;
       </div>
     </footer>
 
+    <style>
+      #mobileDonate { display:none !important; }
+      @media (max-width:880px) {
+        #mobileDonate { display:inline-flex !important; }
+      }
+    </style>
     <script is:inline src="/scripts/cv-main.js"></script>
   </body>
 </html>
