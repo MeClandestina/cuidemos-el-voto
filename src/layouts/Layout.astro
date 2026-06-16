@@ -82,13 +82,14 @@ const { title, lang = 'es' } = Astro.props;
           <a href="#about">About</a>
           <a href="#donate" class="nav__cta" style="border:2px solid var(--ink);background:var(--accent);color:var(--crema);padding:8px 14px;">&#9733; Donate</a>
           <a href="#transparency">Transparency</a>
+          <a href="#requests">Requests</a>
           <a href="#contact">Contact</a>
           <a href="/" style="font-size:11px;opacity:.7;" onclick="sessionStorage.setItem('lang_chosen','1')">ES</a>
         ) : (
           <a href="#que-es">Qué es</a>
           <a href="#donar" class="nav__cta" style="border:2px solid var(--ink);background:var(--accent);color:var(--crema);padding:8px 14px;">&#9733; Donar</a>
           <a href="#transparencia">Transparencia</a>
-          <a href="#solicitar">Solicitar apoyo</a>
+          <a href="#solicitar">Solicitudes</a>
           <a href="#contacto">Contacto</a>
           <a href="/en/" style="font-size:11px;opacity:.7;" onclick="sessionStorage.setItem('lang_chosen','1')">EN</a>
         )}
@@ -121,6 +122,7 @@ const { title, lang = 'es' } = Astro.props;
                 <a href="#about">About</a>
                 <a href="#donate">Donate</a>
                 <a href="#transparency">Transparency</a>
+                <a href="#requests">Requests</a>
               </div>
               <div class="footer__col">
                 <h4>Follow us</h4>
@@ -136,7 +138,7 @@ const { title, lang = 'es' } = Astro.props;
                 <a href="#que-es">Qué es</a>
                 <a href="#donar">Cómo donar</a>
                 <a href="#transparencia">Transparencia</a>
-                <a href="#solicitar">Solicitar apoyo</a>
+                <a href="#solicitar">Solicitudes</a>
               </div>
               <div class="footer__col">
                 <h4>Síguenos</h4>

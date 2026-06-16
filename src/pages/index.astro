@@ -3,7 +3,6 @@ import Layout from '../layouts/Layout.astro';
 import { getLatestTransparency, formatCOP } from '../data/fetchSheet';
 import {
   SHOW_PHASE2_METRICS,
-  GOOGLE_FORM_URL,
   INSTAGRAM_URL,
   WHATSAPP_URL,
 } from '../data/config';
@@ -36,7 +35,7 @@ function formatCO(n: number): string {
         <p class="hero__sub">En la Colombia rural, miles de personas quieren votar pero los puestos de votación quedan a horas de distancia — por río, por trocha, por montaña. Muchos colectivos simplemente no pueden llegar sin ayuda.</p>
         <div class="hero__actions">
           <a class="btn" href="#donar"><span class="star"></span> Donar ahora</a>
-          <a class="btn btn--ghost" href="#solicitar">Solicitar apoyo</a>
+          <a class="btn btn--ghost" href="#solicitar">Solicitudes recibidas</a>
         </div>
         <div class="hero__meta">
           <span>Segunda vuelta &middot; <b>21 jun 2026</b></span>
@@ -184,31 +183,16 @@ function formatCO(n: number): string {
   </div>
 </section>
 
-<!-- ================= SOLICITAR APOYO ================= -->
+<!-- ================= SOLICITUDES RECIBIDAS ================= -->
 <section class="section section--alt" id="solicitar">
   <div class="wrap">
-    <div class="sol__grid">
-      <div class="sol__intro reveal">
-        <div class="section__head">
-          <span class="kicker">Solicitar apoyo</span>
-          <h2 class="section__title ink-dark">Tu colectivo necesita <span class="script">transporte?</span></h2>
-        </div>
-        <p class="lead">Si lideras un colectivo rural que necesita ayuda para llegar a votar, cuéntanos. Revisamos cada solicitud y coordinamos la donación.</p>
-        <p>En el formulario te pediremos algunos <strong>datos personales</strong> para confirmar quién eres, y <strong>datos de tu colectivo</strong> &mdash;dónde queda, cuántas personas son y qué transporte necesitan&mdash; para asegurarnos de que la ayuda llegue a quien de verdad la necesita.</p>
-        <p class="sol__seal"><span class="star"></span> Tus datos se usan solo para coordinar el transporte.</p>
-      </div>
-      <div class="form-slot reveal" data-d="1">
-        <span class="fs-badge">&#9635; Formulario de solicitud</span>
-        <h3>Cuéntanos sobre tu colectivo</h3>
-        <p>Toma pocos minutos. Responde el formulario y nos pondremos en contacto para coordinar la donación del transporte.</p>
-        {GOOGLE_FORM_URL ? (
-          <a class="btn" href={GOOGLE_FORM_URL} target="_blank" rel="noopener"><span class="star"></span> Abrir formulario</a>
-        ) : (
-          <a class="btn" href="#" id="formBtn"><span class="star"></span> Abrir formulario</a>
-        )}
-        <p class="form-help">¿Tienes preguntas? Escríbenos por DM en Instagram <a href={INSTAGRAM_URL} target="_blank" rel="noopener">@imprentarepublicana</a></p>
-      </div>
+    <div class="section__head reveal" style="text-align:center">
+      <span class="kicker" style="justify-content:center">Solicitudes recibidas</span>
+      <h2 class="section__title ink-dark">Más de <span class="script">166 colectivos</span> ya pidieron apoyo</h2>
     </div>
+    <p class="lead reveal" style="text-align:center;max-width:760px;margin:0 auto;">Por ahora cerramos la recepción de solicitudes: tenemos <strong>más de 166 peticiones</strong> de comunidades de las periferias que necesitan transporte para llegar a votar.</p>
+    <p class="reveal" style="text-align:center;max-width:760px;margin:14px auto 0;">Estamos revisando cada caso y corroborando la información. Iremos compartiendo los detalles a medida que avancemos con los datos.</p>
+    <p class="sol__seal reveal" style="text-align:center;justify-content:center;margin-top:18px;"><span class="star"></span> ¿Tienes preguntas? Escríbenos por DM en Instagram <a href={INSTAGRAM_URL} target="_blank" rel="noopener">@imprentarepublicana</a></p>
   </div>
 </section>
 
