@@ -5,9 +5,9 @@
   posthog.init(apiKey || '', {
     api_host: apiHost,
     defaults: '2026-01-30',
-    // Drop noise from in-app browsers (Facebook/Instagram Android WebView injects
-    // scripts that throw "Java object is gone" / enableDidUserTypeOnKeyboardLogging /
-    // sendBeforeUnloadMessage on page unload). Not our code, not fixable at source.
+    // Drop noise from in-app browsers (Facebook/Instagram Android WebView inject
+    // scripts that call native-bridge methods and throw "Java object is gone" when the
+    // WebView is torn down). Matched by the injected bridge method names. Not our code.
     before_send: function (event) {
       if (event && event.event === '$exception') {
         var p = event.properties || {};
@@ -17,7 +17,7 @@
           parts.push(list[i] && list[i].value, list[i] && list[i].type);
         }
         var text = parts.filter(Boolean).join(' ');
-        if (/Java object is gone|enableDidUserTypeOnKeyboardLogging|sendBeforeUnloadMessage/i.test(text)) {
+        if (/Java object is gone|enableDidUserTypeOnKeyboardLogging|sendBeforeUnloadMessage|sendJsBlockingTimeMessage|sendDataToNative/i.test(text)) {
           return null;
         }
       }
