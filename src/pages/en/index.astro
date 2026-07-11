@@ -4,7 +4,9 @@ import { getLatestTransparency } from '../../data/fetchSheet';
 import { INSTAGRAM_URL } from '../../data/config';
 
 const data = await getLatestTransparency();
-const daysLeft = Math.max(0, Math.ceil((new Date(2026, 5, 21).getTime() - Date.now()) / 86400000));
+const primeraVuelta = 29136000;
+const segundaVuelta = 250759368;
+const totalDosVueltas = primeraVuelta + segundaVuelta;
 
 function formatCO(n: number): string {
   return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
@@ -30,12 +32,12 @@ function formatCO(n: number): string {
         <span class="hero__flourish" style="margin-bottom:-8px;">so no one is left without voting</span>
         <p class="hero__sub" style="margin-top:0;">In rural Colombia, thousands want to vote but polling stations are hours away — by river, by dirt road, by mountain trail. Many communities simply can't reach the polls without help. Help them cast their vote.</p>
         <div class="hero__actions">
-          <a class="btn" href="#donate"><span class="star"></span> Donate now</a>
+          <a class="btn" href="#transparency"><span class="star"></span> See the numbers</a>
           <a class="btn btn--ghost" href="#about">Learn more</a>
         </div>
         <div class="hero__meta">
           <span>Runoff election &middot; <b>21 Jun 2026</b></span>
-          <span><b id="countdown">{daysLeft}</b> days left</span>
+          <span>Over <b>45,000</b> people to the polls</span>
           <span>Every peso &rarr; <b>transport</b></span>
         </div>
       </div>
@@ -43,23 +45,17 @@ function formatCO(n: number): string {
   </div>
 </section>
 
-<!-- ================= COUNTDOWN BAND ================= -->
-<section class="cd-band" id="countdown-band" aria-label="Countdown to the runoff election">
+<!-- ================= FINAL RESULT ================= -->
+<section class="cd-band" id="result-band" aria-label="Total raised across both rounds">
   <div class="wrap cd-inner">
     <div class="cd-head">
-      <div class="deco-rule"><span class="dl"></span><span class="lbl"><span class="star"></span> Countdown <span class="star"></span></span><span class="dl dl--r"></span></div>
-      <p class="cd-title ink-cream">Time left until the runoff election</p>
+      <div class="deco-rule"><span class="dl"></span><span class="lbl"><span class="star"></span> We did it <span class="star"></span></span><span class="dl dl--r"></span></div>
+      <p class="cd-title ink-cream">Raised across both rounds</p>
     </div>
-    <div class="cd-clock" id="cdClock" role="timer" aria-live="off">
-      <div class="cd-unit"><span class="cd-n ink-cream" id="cdD">00</span><span class="cd-l">days</span></div>
-      <span class="cd-sep">:</span>
-      <div class="cd-unit"><span class="cd-n ink-cream" id="cdH">00</span><span class="cd-l">hours</span></div>
-      <span class="cd-sep">:</span>
-      <div class="cd-unit"><span class="cd-n ink-cream" id="cdM">00</span><span class="cd-l">min</span></div>
-      <span class="cd-sep">:</span>
-      <div class="cd-unit"><span class="cd-n ink-cream" id="cdS">00</span><span class="cd-l">sec</span></div>
+    <div class="tr__big" style="color:var(--crema);-webkit-text-fill-color:var(--crema);text-align:center;line-height:1.05;">
+      <span class="cur" style="color:var(--crema);-webkit-text-fill-color:var(--crema);">$</span>{formatCO(totalDosVueltas)}
     </div>
-    <p class="cd-note">Every person without transport is a vote that stays home. <strong>Donate today.</strong></p>
+    <p class="cd-note">First round <strong>$29,136,000</strong> &middot; runoff <strong>$250,759,368</strong> COP &mdash; thanks to everyone who chipped in so rural communities could reach the polls.</p>
   </div>
 </section>
 
@@ -82,44 +78,35 @@ function formatCO(n: number): string {
 
     <div class="stat-band reveal">
       <div class="stat">
+        <div class="stat__num ink-red" data-prefix="+" data-count="45000">0</div>
+        <div class="stat__lbl">People made it to the polls &middot; both rounds</div>
+      </div>
+      <div class="stat">
         <div class="stat__num ink-red" data-count="3742">0</div>
-        <div class="stat__lbl">People who made it to the polls</div>
+        <div class="stat__lbl">In the first round alone</div>
       </div>
       <div class="stat">
-        <div class="stat__num ink-red" data-prefix="$" data-count="29136000">0</div>
-        <div class="stat__lbl">Raised in the first round</div>
-      </div>
-      <div class="stat">
-        <div class="stat__num ink-red" data-prefix="$" data-count="72046000">0</div>
-        <div class="stat__lbl">Requested by communities</div>
+        <div class="stat__num ink-red" data-prefix="+" data-count="166">0</div>
+        <div class="stat__lbl">Communities requested support</div>
       </div>
     </div>
-    <p class="tr__note" style="text-align:center">In the first round, communities requested <strong>$72,046,000 COP</strong> and we raised <strong>$29,136,000 COP</strong> &mdash; enough for <strong>3,742 people</strong> to vote. This time we want to close the gap.</p>
+    <p class="tr__note" style="text-align:center">Thanks to every donation, more than <strong>45,000 people</strong> from rural Colombia were able to reach the polls across both rounds &mdash; starting with 3,742 in the first and multiplying in the runoff.</p>
+    <p class="reveal" style="text-align:center;margin-top:10px;"><a href="https://razonpublica.com/la-imprenta-republicana-las-vacas-la-democracia/" target="_blank" rel="noopener"><span class="star"></span> Razón Pública wrote about this initiative &rarr;</a></p>
     <div style="text-align:center;margin-top:18px;">
       <a class="btn btn--ghost" href="https://drive.google.com/drive/folders/1XG48D1fr45MqMtTPUabJA3Pxybs-tIiK" target="_blank" rel="noopener"><span class="star"></span> See first-round photos &amp; receipts</a>
     </div>
   </div>
 </section>
 
-<!-- ================= DONATE ================= -->
-<section class="section section--alt" id="donate">
+<!-- ================= HOW DONATIONS WERE COLLECTED ================= -->
+<section class="section section--alt" id="donations">
   <div class="wrap">
     <div class="section__head reveal">
-      <span class="kicker">How to donate</span>
-      <h2 class="section__title ink-dark">Every dollar <span class="script">gets them there</span></h2>
+      <span class="kicker">How donations were collected</span>
+      <h2 class="section__title ink-dark">Fundraising <span class="script">is now closed</span></h2>
     </div>
-
-    <div class="pay-card reveal" style="text-align:center;background:var(--accent);color:var(--crema);border-color:var(--ink);">
-      <div class="pay-card__head" style="justify-content:center;">
-        <span class="pay-card__name" style="color:var(--crema);">Donate from anywhere</span>
-        <span class="pay-card__tag" style="color:var(--crema);border-color:var(--crema);">GoFundMe</span>
-      </div>
-      <p style="margin:12px 0 6px;font-family:var(--font-body);font-size:clamp(16px,2vw,19px);">Donate from any country through GoFundMe. Every contribution goes directly to covering transport for rural voters in Colombia.</p>
-      <p style="font-family:var(--font-stamp);text-transform:uppercase;letter-spacing:.08em;font-size:12px;color:rgba(245,240,225,.7);margin-bottom:18px;">Platform fees apply</p>
-      <a class="btn" href="https://www.gofundme.com/f/help-remote-colombians-reach-the-polls" target="_blank" rel="noopener" style="background:var(--crema);color:var(--accent);border-color:var(--crema);"><span class="star"></span> Donate on GoFundMe</a>
-    </div>
-
-    <p class="donar__intl reveal"><span class="star"></span> Have a Colombian bank account? <a href="/" style="color:var(--accent);border-bottom:2px solid var(--accent);">Visit the Spanish version</a> for direct transfer options with zero fees.</p>
+    <p class="lead reveal" style="max-width:760px;">Donations were received through <strong>Nequi</strong>, <strong>bank transfer (Zelle)</strong> and <strong>GoFundMe</strong> for supporters abroad. Fundraising is now closed.</p>
+    <p class="donar__intl reveal"><span class="star"></span> Questions? DM us on Instagram <a href={INSTAGRAM_URL} target="_blank" rel="noopener">@imprentarepublicana</a>.</p>
   </div>
 </section>
 
@@ -132,23 +119,24 @@ function formatCO(n: number): string {
     </div>
 
     <div class="tr__panel regmark reveal">
-      <div class="tr__label">Total raised &middot; to date</div>
+      <div class="tr__label">Total raised &middot; runoff</div>
       <div class="tr__big ink-red">
         <span class="cur">$</span><span id="recaudado" data-count={data.totalRecaudado.toString()}>{formatCO(data.totalRecaudado)}</span>
       </div>
-      <div class="tr__sub">Colombian pesos &middot; <b>updated daily by the team</b></div>
+      <div class="tr__sub">Colombian pesos &middot; <b>final runoff figure</b></div>
 
       <div class="tr__meta">
         <div class="m"><div class="n" id="lastUpdate">{data.fecha}</div><div class="t">Last updated</div></div>
-        <div class="m"><div class="n" id="daysLeft">{daysLeft}</div><div class="t">Days until election</div></div>
+        <div class="m"><div class="n">$279,895,368</div><div class="t">Total across both rounds</div></div>
       </div>
 
       <div class="tr__actions">
-        <a class="btn" href="https://drive.google.com/drive/folders/1XG48D1fr45MqMtTPUabJA3Pxybs-tIiK" target="_blank" rel="noopener"><span class="star"></span> First-round report</a>
+        <a class="btn" href="https://drive.google.com/drive/folders/1bK9pwD6OEtDSFgXwvkyXi7SXMWq0vbRm" target="_blank" rel="noopener"><span class="star"></span> Second-round report &middot; June 21</a>
+        <a class="btn btn--ghost" href="https://drive.google.com/drive/folders/1XG48D1fr45MqMtTPUabJA3Pxybs-tIiK" target="_blank" rel="noopener">First-round report</a>
         <a class="btn btn--ghost" href="https://drive.google.com/drive/folders/1XG48D1fr45MqMtTPUabJA3Pxybs-tIiK" target="_blank" rel="noopener">Photos &amp; receipts on Drive</a>
         <a class="btn btn--ghost" href="https://docs.google.com/spreadsheets/d/1orrl3OXyw5KRxZVZosZyfMw9_tBehXo-WNRspVWS0bc/edit?gid=0#gid=0" target="_blank" rel="noopener">Daily donation report</a>
       </div>
-      <p class="tr__note">The report and Drive folder include photos of communities arriving to vote in the first round and receipts for every expense. Data is published from a Google spreadsheet and updated daily.</p>
+      <p class="tr__note">The reports and Drive folder include photos of communities arriving to vote in the first and second rounds and receipts for every expense. Data is published from a Google spreadsheet.</p>
     </div>
   </div>
 </section>

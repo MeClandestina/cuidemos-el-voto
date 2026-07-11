@@ -80,14 +80,14 @@ const { title, lang = 'es' } = Astro.props;
       <nav class="nav__links" id="navLinks">
         {lang === 'en' ? (
           <a href="#about">About</a>
-          <a href="#donate" class="nav__cta" style="border:2px solid var(--ink);background:var(--accent);color:var(--crema);padding:8px 14px;">&#9733; Donate</a>
+          <a href="#transparency" class="nav__cta" style="border:2px solid var(--ink);background:var(--accent);color:var(--crema);padding:8px 14px;">&#9733; Results</a>
           <a href="#transparency">Transparency</a>
           <a href="#requests">Requests</a>
           <a href="#contact">Contact</a>
           <a href="/" style="font-size:11px;opacity:.7;" onclick="sessionStorage.setItem('lang_chosen','1')">ES</a>
         ) : (
           <a href="#que-es">Qué es</a>
-          <a href="#donar" class="nav__cta" style="border:2px solid var(--ink);background:var(--accent);color:var(--crema);padding:8px 14px;">&#9733; Donar</a>
+          <a href="#transparencia" class="nav__cta" style="border:2px solid var(--ink);background:var(--accent);color:var(--crema);padding:8px 14px;">&#9733; Cuentas</a>
           <a href="#transparencia">Transparencia</a>
           <a href="#solicitar">Solicitudes</a>
           <a href="#contacto">Contacto</a>
@@ -96,9 +96,9 @@ const { title, lang = 'es' } = Astro.props;
       </nav>
       <div style="display:flex;align-items:center;gap:8px;">
         {lang === 'en' ? (
-          <a class="nav__cta" href="#donate" style="display:none;" id="mobileDonate">&#9733; Donate</a>
+          <a class="nav__cta" href="#transparency" style="display:none;" id="mobileDonate">&#9733; Results</a>
         ) : (
-          <a class="nav__cta" href="#donar" style="display:none;" id="mobileDonate">&#9733; Donar</a>
+          <a class="nav__cta" href="#transparencia" style="display:none;" id="mobileDonate">&#9733; Cuentas</a>
         )}
         <button class="nav__burger" id="burger" aria-label="Menu">Menu</button>
       </div>
@@ -120,7 +120,7 @@ const { title, lang = 'es' } = Astro.props;
               <div class="footer__col">
                 <h4>Campaign</h4>
                 <a href="#about">About</a>
-                <a href="#donate">Donate</a>
+                <a href="#donations">Donations</a>
                 <a href="#transparency">Transparency</a>
                 <a href="#requests">Requests</a>
               </div>
@@ -136,7 +136,7 @@ const { title, lang = 'es' } = Astro.props;
               <div class="footer__col">
                 <h4>Campaña</h4>
                 <a href="#que-es">Qué es</a>
-                <a href="#donar">Cómo donar</a>
+                <a href="#donaciones">Donaciones</a>
                 <a href="#transparencia">Transparencia</a>
                 <a href="#solicitar">Solicitudes</a>
               </div>

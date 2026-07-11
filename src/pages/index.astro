@@ -8,7 +8,9 @@ import {
 } from '../data/config';
 
 const data = await getLatestTransparency();
-const daysLeft = Math.max(0, Math.ceil((new Date(2026, 5, 21).getTime() - Date.now()) / 86400000));
+const primeraVuelta = 29136000;
+const segundaVuelta = 250759368;
+const totalDosVueltas = primeraVuelta + segundaVuelta;
 
 function formatCO(n: number): string {
   return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
@@ -34,12 +36,12 @@ function formatCO(n: number): string {
         <span class="hero__flourish">para que nadie se quede sin votar</span>
         <p class="hero__sub">En la Colombia rural, miles de personas quieren votar pero los puestos de votación quedan a horas de distancia — por río, por trocha, por montaña. Muchos colectivos simplemente no pueden llegar sin ayuda.</p>
         <div class="hero__actions">
-          <a class="btn" href="#donar"><span class="star"></span> Donar ahora</a>
+          <a class="btn" href="#transparencia"><span class="star"></span> Ver las cuentas</a>
           <a class="btn btn--ghost" href="#solicitar">Solicitudes recibidas</a>
         </div>
         <div class="hero__meta">
           <span>Segunda vuelta &middot; <b>21 jun 2026</b></span>
-          <span>Faltan <b id="countdown">{daysLeft}</b> días</span>
+          <span>Más de <b>45.000</b> personas a votar</span>
           <span>Cada peso &rarr; <b>transporte</b></span>
         </div>
       </div>
@@ -47,23 +49,17 @@ function formatCO(n: number): string {
   </div>
 </section>
 
-<!-- ================= COUNTDOWN BAND ================= -->
-<section class="cd-band" id="countdown-band" aria-label="Cuenta regresiva para la segunda vuelta">
+<!-- ================= RESULTADO FINAL ================= -->
+<section class="cd-band" id="resultado-band" aria-label="Total recaudado en las dos vueltas">
   <div class="wrap cd-inner">
     <div class="cd-head">
-      <div class="deco-rule"><span class="dl"></span><span class="lbl"><span class="star"></span> Cuenta regresiva <span class="star"></span></span><span class="dl dl--r"></span></div>
-      <p class="cd-title ink-cream">Faltan para la segunda vuelta</p>
+      <div class="deco-rule"><span class="dl"></span><span class="lbl"><span class="star"></span> Lo logramos <span class="star"></span></span><span class="dl dl--r"></span></div>
+      <p class="cd-title ink-cream">Recaudado en las dos vueltas</p>
     </div>
-    <div class="cd-clock" id="cdClock" role="timer" aria-live="off">
-      <div class="cd-unit"><span class="cd-n ink-cream" id="cdD">00</span><span class="cd-l">dias</span></div>
-      <span class="cd-sep">:</span>
-      <div class="cd-unit"><span class="cd-n ink-cream" id="cdH">00</span><span class="cd-l">horas</span></div>
-      <span class="cd-sep">:</span>
-      <div class="cd-unit"><span class="cd-n ink-cream" id="cdM">00</span><span class="cd-l">min</span></div>
-      <span class="cd-sep">:</span>
-      <div class="cd-unit"><span class="cd-n ink-cream" id="cdS">00</span><span class="cd-l">seg</span></div>
+    <div class="tr__big" style="color:var(--crema);-webkit-text-fill-color:var(--crema);text-align:center;line-height:1.05;">
+      <span class="cur" style="color:var(--crema);-webkit-text-fill-color:var(--crema);">$</span>{formatCO(totalDosVueltas)}
     </div>
-    <p class="cd-note">Cada persona sin transporte es un voto que se queda en casa. <strong>Dona hoy.</strong></p>
+    <p class="cd-note">Primera vuelta <strong>$29.136.000</strong> &middot; segunda vuelta <strong>$250.759.368</strong> &mdash; gracias a cada persona que aportó para que las periferias llegaran a votar.</p>
   </div>
 </section>
 
@@ -86,68 +82,35 @@ function formatCO(n: number): string {
 
     <div class="stat-band reveal">
       <div class="stat">
+        <div class="stat__num ink-red" data-prefix="+" data-count="45000">0</div>
+        <div class="stat__lbl">Personas llegaron a votar &middot; las dos vueltas</div>
+      </div>
+      <div class="stat">
         <div class="stat__num ink-red" data-count="3742">0</div>
-        <div class="stat__lbl">Personas que llegaron a votar</div>
+        <div class="stat__lbl">Solo en la primera vuelta</div>
       </div>
       <div class="stat">
-        <div class="stat__num ink-red" data-prefix="$" data-count="29136000">0</div>
-        <div class="stat__lbl">Recaudado en primera vuelta</div>
-      </div>
-      <div class="stat">
-        <div class="stat__num ink-red" data-prefix="$" data-count="72046000">0</div>
-        <div class="stat__lbl">Solicitado por los colectivos</div>
+        <div class="stat__num ink-red" data-prefix="+" data-count="166">0</div>
+        <div class="stat__lbl">Colectivos pidieron apoyo</div>
       </div>
     </div>
-    <p class="tr__note" style="text-align:center">En primera vuelta los colectivos pidieron <strong>$72.046.000</strong> y reunimos <strong>$29.136.000</strong> &mdash; suficiente para que <strong>3.742 personas</strong> llegaran a votar. Esta vez queremos cerrar la brecha.</p>
+    <p class="tr__note" style="text-align:center">Gracias a cada donación, más de <strong>45.000 personas</strong> de las periferias de Colombia pudieron llegar a votar en las dos vueltas &mdash; empezando por 3.742 en la primera y multiplicándose en la segunda.</p>
+    <p class="reveal" style="text-align:center;margin-top:10px;"><a href="https://razonpublica.com/la-imprenta-republicana-las-vacas-la-democracia/" target="_blank" rel="noopener"><span class="star"></span> Razón Pública escribió sobre esta iniciativa &rarr;</a></p>
     <div style="text-align:center;margin-top:18px;">
       <a class="btn btn--ghost" href="https://drive.google.com/drive/folders/1XG48D1fr45MqMtTPUabJA3Pxybs-tIiK" target="_blank" rel="noopener"><span class="star"></span> Ver fotos y soportes de primera vuelta</a>
     </div>
   </div>
 </section>
 
-<!-- ================= COMO DONAR ================= -->
-<section class="section section--alt" id="donar">
+<!-- ================= CÓMO SE RECIBIERON LAS DONACIONES ================= -->
+<section class="section section--alt" id="donaciones">
   <div class="wrap">
     <div class="section__head reveal">
-      <span class="kicker">Cómo donar</span>
-      <h2 class="section__title ink-dark">Tres formas, <span class="script">un solo destino</span></h2>
+      <span class="kicker">Cómo se recibieron las donaciones</span>
+      <h2 class="section__title ink-dark">La recolección <span class="script">ya cerró</span></h2>
     </div>
-
-    <div class="donar__grid">
-      <!-- NEQUI -->
-      <div class="pay-card reveal">
-        <div class="pay-card__head">
-          <span class="pay-card__name ink-dark">Nequi</span>
-          <span class="pay-card__tag tag--nequi">Envia y dona</span>
-        </div>
-        <p class="qr-cap" style="margin-top:1rem;">Envia al numero:</p>
-        <p class="qr-cap"><strong style="font-size:1.4em;">313-583-4185</strong></p>
-        <p class="qr-holder">A nombre de <strong>Valentina Arteaga</strong></p>
-      </div>
-
-      <!-- OTROS BANCOS + ZELLE -->
-      <div class="pay-card reveal" data-d="1">
-        <div class="pay-card__head">
-          <span class="pay-card__name ink-dark">Otros bancos</span>
-          <span class="pay-card__tag tag--banco">Transferencia</span>
-        </div>
-        <p class="qr-cap" style="margin-top:1rem;">Zelle: <strong style="font-size:1.4em;">407-427-2445</strong></p>
-        <p class="qr-holder">A nombre de <strong>Valentina Arteaga</strong></p>
-      </div>
-    </div>
-
-    <!-- GOFUNDME — desde el exterior -->
-    <div class="pay-card reveal" style="margin-top:clamp(24px,3vw,40px);text-align:center;background:var(--accent);color:var(--crema);border-color:var(--ink);">
-      <div class="pay-card__head" style="justify-content:center;">
-        <span class="pay-card__name" style="color:var(--crema);">Desde el exterior</span>
-        <span class="pay-card__tag" style="color:var(--crema);border-color:var(--crema);">GoFundMe</span>
-      </div>
-      <p style="margin:12px 0 6px;font-family:var(--font-body);font-size:clamp(16px,2vw,19px);">¿No tienes cuenta bancaria colombiana? Dona desde cualquier país a través de GoFundMe.</p>
-      <p style="font-family:var(--font-stamp);text-transform:uppercase;letter-spacing:.08em;font-size:12px;color:rgba(245,240,225,.7);margin-bottom:18px;">Aplican comisiones de la plataforma</p>
-      <a class="btn" href="https://www.gofundme.com/f/help-remote-colombians-reach-the-polls" target="_blank" rel="noopener" style="background:var(--crema);color:var(--accent);border-color:var(--crema);"><span class="star"></span> Donar por GoFundMe</a>
-    </div>
-
-    <p class="donar__intl reveal"><span class="star"></span> ¿Tienes preguntas? Escríbenos por DM en Instagram <a href={INSTAGRAM_URL} target="_blank" rel="noopener">@imprentarepublicana</a> y coordinamos tu aporte.</p>
+    <p class="lead reveal" style="max-width:760px;">Las donaciones se recibieron a través de <strong>Nequi</strong>, <strong>transferencia bancaria (Zelle)</strong> y <strong>GoFundMe</strong> para quienes aportaron desde el exterior. La recolección ya está cerrada.</p>
+    <p class="donar__intl reveal"><span class="star"></span> ¿Tienes preguntas? Escríbenos por DM en Instagram <a href={INSTAGRAM_URL} target="_blank" rel="noopener">@imprentarepublicana</a>.</p>
   </div>
 </section>
 
@@ -160,25 +123,24 @@ function formatCO(n: number): string {
     </div>
 
     <div class="tr__panel regmark reveal">
-      <div class="tr__label">Total recaudado &middot; a la fecha</div>
+      <div class="tr__label">Total recaudado &middot; segunda vuelta</div>
       <div class="tr__big ink-red">
         <span class="cur">$</span><span id="recaudado" data-count={data.totalRecaudado.toString()}>{formatCO(data.totalRecaudado)}</span>
       </div>
-      <div class="tr__sub">pesos colombianos &middot; <b>actualizado a diario por el equipo</b></div>
+      <div class="tr__sub">pesos colombianos &middot; <b>cifra final de la segunda vuelta</b></div>
 
       <div class="tr__meta">
         <div class="m"><div class="n" id="lastUpdate">{data.fecha}</div><div class="t">Última actualización</div></div>
-        <div class="m"><div class="n" id="daysLeft">{daysLeft}</div><div class="t">Días para la votación</div></div>
-        <div class="m phase2"><div class="n" data-count="0" data-suffix="">0</div><div class="t">Votos pidiendo ayuda</div></div>
-        <div class="m phase2"><div class="n">$0</div><div class="t">Total necesitado</div></div>
+        <div class="m"><div class="n">$279.895.368</div><div class="t">Total en las dos vueltas</div></div>
       </div>
 
       <div class="tr__actions">
-        <a class="btn" href="https://drive.google.com/drive/folders/1XG48D1fr45MqMtTPUabJA3Pxybs-tIiK" target="_blank" rel="noopener"><span class="star"></span> Informe primera vuelta (PDF)</a>
+        <a class="btn" href="https://drive.google.com/drive/folders/1bK9pwD6OEtDSFgXwvkyXi7SXMWq0vbRm" target="_blank" rel="noopener"><span class="star"></span> Informe segunda vuelta &middot; 21 de junio</a>
+        <a class="btn btn--ghost" href="https://drive.google.com/drive/folders/1XG48D1fr45MqMtTPUabJA3Pxybs-tIiK" target="_blank" rel="noopener">Informe primera vuelta (PDF)</a>
         <a class="btn btn--ghost" href="https://drive.google.com/drive/folders/1XG48D1fr45MqMtTPUabJA3Pxybs-tIiK" target="_blank" rel="noopener">Fotos y soportes en Drive</a>
         <a class="btn btn--ghost" href="https://docs.google.com/spreadsheets/d/1orrl3OXyw5KRxZVZosZyfMw9_tBehXo-WNRspVWS0bc/edit?gid=0#gid=0" target="_blank" rel="noopener">Ver reporte diario de donaciones</a>
       </div>
-      <p class="tr__note">El informe y la carpeta de Drive incluyen las fotos de los colectivos llegando a votar en primera vuelta y los soportes de cada gasto. Los datos se publican desde una hoja de cálculo de Google y se actualizan a diario.</p>
+      <p class="tr__note">Los informes y la carpeta de Drive incluyen las fotos de los colectivos llegando a votar en primera y segunda vuelta y los soportes de cada gasto. Los datos se publican desde una hoja de cálculo de Google.</p>
     </div>
   </div>
 </section>
